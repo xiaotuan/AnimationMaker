@@ -118,34 +118,38 @@ Public Class AnimationMaker
 
     Private Sub btnPreview_Click(sender As Object, e As EventArgs) Handles btnPreview.Click
         Dim rateStr = tbRate.Text.Trim()
-        If IsNumeric(rateStr) Then
-            Dim img = Image.FromFile(Animation.Pictures.Item(0))
-            Dim imgWidth = img.Width
-            Dim imgHeight = img.Height
-            Dim width = imgWidth
-            Dim height = imgHeight
-            Dim screenWidth = My.Computer.Screen.Bounds.Width
-            Dim screenHeight = My.Computer.Screen.Bounds.Height
-            Debug.WriteLine("Screen width: " + Str(screenWidth) + ", height: " + Str(screenHeight))
-            If imgWidth > screenWidth Or imgHeight > screenHeight Then
-                Dim wScale = Double.Parse(screenWidth \ 2) / Double.Parse(imgWidth)
-                Dim hScale = Double.Parse(screenHeight \ 2) / Double.Parse(imgHeight)
-                Dim scale = Math.Min(wScale, hScale)
-                Debug.WriteLine("wScale: " + Str(wScale) + ", hScale: " + Str(hScale) + ", scale: " + Str(scale))
-                width = Int(Double.Parse(width) * scale)
-                height = Int(Double.Parse(height) * scale)
+        If System.IO.Directory.Exists(Animation.Directory) Then
+            If IsNumeric(rateStr) Then
+                Dim img = Image.FromFile(Animation.Pictures.Item(0))
+                Dim imgWidth = img.Width
+                Dim imgHeight = img.Height
+                Dim width = imgWidth
+                Dim height = imgHeight
+                Dim screenWidth = My.Computer.Screen.Bounds.Width
+                Dim screenHeight = My.Computer.Screen.Bounds.Height
+                Debug.WriteLine("Screen width: " + Str(screenWidth) + ", height: " + Str(screenHeight))
+                If imgWidth > screenWidth Or imgHeight > screenHeight Then
+                    Dim wScale = Double.Parse(screenWidth \ 2) / Double.Parse(imgWidth)
+                    Dim hScale = Double.Parse(screenHeight \ 2) / Double.Parse(imgHeight)
+                    Dim scale = Math.Min(wScale, hScale)
+                    Debug.WriteLine("wScale: " + Str(wScale) + ", hScale: " + Str(hScale) + ", scale: " + Str(scale))
+                    width = Int(Double.Parse(width) * scale)
+                    height = Int(Double.Parse(height) * scale)
+                End If
+                Debug.WriteLine("width: " + Str(width) + ", height: " + Str(height))
+                Dim playForm = New PlayAnimation With {
+                    .mPictures = Animation.Pictures,
+                    .mRate = Int(rateStr),
+                    .Location = New System.Drawing.Size((screenWidth - width) \ 2, (screenHeight - height) \ 2),
+                    .ClientSize = New System.Drawing.Size(width, height)
+                }
+                playForm.pbAnim.Size = New System.Drawing.Size(width, height)
+                playForm.Show()
+            Else
+                MessageBox.Show("动画速率必须数字", "提示"， MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
-            Debug.WriteLine("width: " + Str(width) + ", height: " + Str(height))
-            Dim playForm = New PlayAnimation With {
-                .mPictures = Animation.Pictures,
-                .mRate = Int(rateStr),
-                .Location = New System.Drawing.Size((screenWidth - width) \ 2, (screenHeight - height) \ 2),
-                .ClientSize = New System.Drawing.Size(width, height)
-            }
-            playForm.pbAnim.Size = New System.Drawing.Size(width, height)
-            playForm.Show()
         Else
-            MessageBox.Show("动画速率必须数字", "提示"， MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MessageBox.Show("动画图片目录不存在", "提示"， MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
     End Sub
 
