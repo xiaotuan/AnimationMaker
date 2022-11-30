@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class Form1
+Partial Class AnimationMaker
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -22,11 +22,11 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim ListViewItem1 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem(New String() {"1", "skdfj.png"}, -1)
         Me.Label1 = New System.Windows.Forms.Label()
         Me.tbDirectory = New System.Windows.Forms.TextBox()
         Me.btnSelect = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.tbName = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.tbPrefix = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -38,7 +38,12 @@ Partial Class Form1
         Me.btnPreview = New System.Windows.Forms.Button()
         Me.btnRename = New System.Windows.Forms.Button()
         Me.lvPictures = New System.Windows.Forms.ListView()
-        Me.ofdAnimDir = New System.Windows.Forms.OpenFileDialog()
+        Me.number = New System.Windows.Forms.ColumnHeader()
+        Me.fileName = New System.Windows.Forms.ColumnHeader()
+        Me.fbdDirectory = New System.Windows.Forms.FolderBrowserDialog()
+        Me.rbBoot = New System.Windows.Forms.RadioButton()
+        Me.rbShutdown = New System.Windows.Forms.RadioButton()
+        Me.btCreate = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Label1
@@ -71,22 +76,14 @@ Partial Class Form1
         Me.Label2.AutoSize = True
         Me.Label2.Location = New System.Drawing.Point(12, 61)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(80, 17)
+        Me.Label2.Size = New System.Drawing.Size(68, 17)
         Me.Label2.TabIndex = 3
-        Me.Label2.Text = "动画文件名："
-        '
-        'tbName
-        '
-        Me.tbName.Location = New System.Drawing.Point(110, 58)
-        Me.tbName.Name = "tbName"
-        Me.tbName.Size = New System.Drawing.Size(533, 23)
-        Me.tbName.TabIndex = 4
-        Me.tbName.Text = "bootanimation"
+        Me.Label2.Text = "动画类型："
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(11, 143)
+        Me.Label3.Location = New System.Drawing.Point(12, 97)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(104, 17)
         Me.Label3.TabIndex = 5
@@ -94,15 +91,16 @@ Partial Class Form1
         '
         'tbPrefix
         '
-        Me.tbPrefix.Location = New System.Drawing.Point(109, 140)
+        Me.tbPrefix.Location = New System.Drawing.Point(110, 94)
         Me.tbPrefix.Name = "tbPrefix"
         Me.tbPrefix.Size = New System.Drawing.Size(132, 23)
         Me.tbPrefix.TabIndex = 6
+        Me.tbPrefix.Text = "anim_"
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(258, 143)
+        Me.Label4.Location = New System.Drawing.Point(259, 97)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(68, 17)
         Me.Label4.TabIndex = 7
@@ -110,15 +108,16 @@ Partial Class Form1
         '
         'tbNumber
         '
-        Me.tbNumber.Location = New System.Drawing.Point(323, 140)
+        Me.tbNumber.Location = New System.Drawing.Point(324, 94)
         Me.tbNumber.Name = "tbNumber"
         Me.tbNumber.Size = New System.Drawing.Size(100, 23)
         Me.tbNumber.TabIndex = 8
+        Me.tbNumber.Text = "1"
         '
         'cbReverse
         '
         Me.cbReverse.AutoSize = True
-        Me.cbReverse.Location = New System.Drawing.Point(445, 142)
+        Me.cbReverse.Location = New System.Drawing.Point(446, 96)
         Me.cbReverse.Name = "cbReverse"
         Me.cbReverse.Size = New System.Drawing.Size(75, 21)
         Me.cbReverse.TabIndex = 9
@@ -128,7 +127,7 @@ Partial Class Form1
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(12, 101)
+        Me.Label5.Location = New System.Drawing.Point(12, 136)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(0, 17)
         Me.Label5.TabIndex = 10
@@ -136,22 +135,23 @@ Partial Class Form1
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(12, 101)
+        Me.Label6.Location = New System.Drawing.Point(12, 136)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(68, 17)
         Me.Label6.TabIndex = 11
-        Me.Label6.Text = "动画帧率："
+        Me.Label6.Text = "动画速率："
         '
         'tbRate
         '
-        Me.tbRate.Location = New System.Drawing.Point(110, 98)
+        Me.tbRate.Location = New System.Drawing.Point(110, 133)
         Me.tbRate.Name = "tbRate"
         Me.tbRate.Size = New System.Drawing.Size(107, 23)
         Me.tbRate.TabIndex = 12
+        Me.tbRate.Text = "16"
         '
         'btnPreview
         '
-        Me.btnPreview.Location = New System.Drawing.Point(239, 98)
+        Me.btnPreview.Location = New System.Drawing.Point(239, 133)
         Me.btnPreview.Name = "btnPreview"
         Me.btnPreview.Size = New System.Drawing.Size(75, 23)
         Me.btnPreview.TabIndex = 13
@@ -160,7 +160,7 @@ Partial Class Form1
         '
         'btnRename
         '
-        Me.btnRename.Location = New System.Drawing.Point(535, 140)
+        Me.btnRename.Location = New System.Drawing.Point(536, 94)
         Me.btnRename.Name = "btnRename"
         Me.btnRename.Size = New System.Drawing.Size(85, 23)
         Me.btnRename.TabIndex = 14
@@ -169,21 +169,65 @@ Partial Class Form1
         '
         'lvPictures
         '
+        Me.lvPictures.AllowDrop = True
+        Me.lvPictures.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.number, Me.fileName})
+        Me.lvPictures.FullRowSelect = True
+        Me.lvPictures.GridLines = True
         Me.lvPictures.Location = New System.Drawing.Point(12, 183)
         Me.lvPictures.Name = "lvPictures"
         Me.lvPictures.Size = New System.Drawing.Size(712, 275)
         Me.lvPictures.TabIndex = 15
         Me.lvPictures.UseCompatibleStateImageBehavior = False
+        Me.lvPictures.View = System.Windows.Forms.View.Details
         '
-        'ofdAnimDir
+        'number
         '
-        Me.ofdAnimDir.FileName = "OpenFileDialog1"
+        Me.number.Text = "序号"
         '
-        'Form1
+        'fileName
+        '
+        Me.fileName.Text = "文件名"
+        Me.fileName.Width = 620
+        '
+        'rbBoot
+        '
+        Me.rbBoot.AutoSize = True
+        Me.rbBoot.Checked = True
+        Me.rbBoot.Location = New System.Drawing.Point(112, 61)
+        Me.rbBoot.Name = "rbBoot"
+        Me.rbBoot.Size = New System.Drawing.Size(74, 21)
+        Me.rbBoot.TabIndex = 16
+        Me.rbBoot.TabStop = True
+        Me.rbBoot.Text = "开机动画"
+        Me.rbBoot.UseVisualStyleBackColor = True
+        '
+        'rbShutdown
+        '
+        Me.rbShutdown.AutoSize = True
+        Me.rbShutdown.Location = New System.Drawing.Point(239, 61)
+        Me.rbShutdown.Name = "rbShutdown"
+        Me.rbShutdown.Size = New System.Drawing.Size(74, 21)
+        Me.rbShutdown.TabIndex = 16
+        Me.rbShutdown.Text = "关机动画"
+        Me.rbShutdown.UseVisualStyleBackColor = True
+        '
+        'btCreate
+        '
+        Me.btCreate.Location = New System.Drawing.Point(334, 133)
+        Me.btCreate.Name = "btCreate"
+        Me.btCreate.Size = New System.Drawing.Size(75, 23)
+        Me.btCreate.TabIndex = 17
+        Me.btCreate.Text = "生成动画"
+        Me.btCreate.UseVisualStyleBackColor = True
+        '
+        'AnimationMaker
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 17.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(736, 470)
+        Me.Controls.Add(Me.btCreate)
+        Me.Controls.Add(Me.rbShutdown)
+        Me.Controls.Add(Me.rbBoot)
         Me.Controls.Add(Me.lvPictures)
         Me.Controls.Add(Me.btnRename)
         Me.Controls.Add(Me.btnPreview)
@@ -195,16 +239,15 @@ Partial Class Form1
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.tbPrefix)
         Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.tbName)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.btnSelect)
         Me.Controls.Add(Me.tbDirectory)
         Me.Controls.Add(Me.Label1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
-        Me.Name = "Form1"
+        Me.Name = "AnimationMaker"
         Me.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "AnimationMaker"
+        Me.Text = "动画制作"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -214,7 +257,6 @@ Partial Class Form1
     Friend WithEvents tbDirectory As TextBox
     Friend WithEvents btnSelect As Button
     Friend WithEvents Label2 As Label
-    Friend WithEvents tbName As TextBox
     Friend WithEvents Label3 As Label
     Friend WithEvents tbPrefix As TextBox
     Friend WithEvents Label4 As Label
@@ -226,5 +268,10 @@ Partial Class Form1
     Friend WithEvents btnPreview As Button
     Friend WithEvents btnRename As Button
     Friend WithEvents lvPictures As ListView
-    Friend WithEvents ofdAnimDir As OpenFileDialog
+    Friend WithEvents fbdDirectory As FolderBrowserDialog
+    Friend WithEvents number As ColumnHeader
+    Friend WithEvents fileName As ColumnHeader
+    Friend WithEvents rbBoot As RadioButton
+    Friend WithEvents rbShutdown As RadioButton
+    Friend WithEvents btCreate As Button
 End Class
