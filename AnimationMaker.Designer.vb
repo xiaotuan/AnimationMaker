@@ -22,7 +22,6 @@ Partial Class AnimationMaker
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim ListViewItem1 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem(New String() {"1", "skdfj.png"}, -1)
         Me.Label1 = New System.Windows.Forms.Label()
         Me.tbDirectory = New System.Windows.Forms.TextBox()
         Me.btnSelect = New System.Windows.Forms.Button()
@@ -44,6 +43,9 @@ Partial Class AnimationMaker
         Me.rbBoot = New System.Windows.Forms.RadioButton()
         Me.rbShutdown = New System.Windows.Forms.RadioButton()
         Me.btCreate = New System.Windows.Forms.Button()
+        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
+        Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label1
@@ -175,7 +177,7 @@ Partial Class AnimationMaker
         Me.lvPictures.GridLines = True
         Me.lvPictures.Location = New System.Drawing.Point(12, 183)
         Me.lvPictures.Name = "lvPictures"
-        Me.lvPictures.Size = New System.Drawing.Size(712, 275)
+        Me.lvPictures.Size = New System.Drawing.Size(712, 260)
         Me.lvPictures.TabIndex = 15
         Me.lvPictures.UseCompatibleStateImageBehavior = False
         Me.lvPictures.View = System.Windows.Forms.View.Details
@@ -220,11 +222,27 @@ Partial Class AnimationMaker
         Me.btCreate.Text = "生成动画"
         Me.btCreate.UseVisualStyleBackColor = True
         '
+        'StatusStrip1
+        '
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1})
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 448)
+        Me.StatusStrip1.Name = "StatusStrip1"
+        Me.StatusStrip1.Size = New System.Drawing.Size(736, 22)
+        Me.StatusStrip1.TabIndex = 18
+        Me.StatusStrip1.Text = "StatusStrip1"
+        '
+        'ToolStripStatusLabel1
+        '
+        Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
+        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(131, 17)
+        Me.ToolStripStatusLabel1.Text = "当前软件版本号：1.0.3"
+        '
         'AnimationMaker
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 17.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(736, 470)
+        Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.btCreate)
         Me.Controls.Add(Me.rbShutdown)
         Me.Controls.Add(Me.rbBoot)
@@ -247,7 +265,9 @@ Partial Class AnimationMaker
         Me.Name = "AnimationMaker"
         Me.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "动画制作"
+        Me.Text = "Android 动画制作"
+        Me.StatusStrip1.ResumeLayout(False)
+        Me.StatusStrip1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -274,4 +294,6 @@ Partial Class AnimationMaker
     Friend WithEvents rbBoot As RadioButton
     Friend WithEvents rbShutdown As RadioButton
     Friend WithEvents btCreate As Button
+    Friend WithEvents StatusStrip1 As StatusStrip
+    Friend WithEvents ToolStripStatusLabel1 As ToolStripStatusLabel
 End Class

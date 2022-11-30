@@ -6,6 +6,7 @@
     <StartupObject>Sub Main</StartupObject>
     <UseWindowsForms>true</UseWindowsForms>
     <MyType>WindowsForms</MyType>
+    <AssemblyName>Android 动画制作</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
