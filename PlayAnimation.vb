@@ -4,6 +4,7 @@
     Friend mRate As Integer
 
     Private WithEvents mTimer As Timer
+    Private WithEvents mCloseTimer As Timer
     Private mIndex As Integer = 0
 
     Private Sub PlayAnimation_KeyUp(sender As Object, e As KeyEventArgs) Handles Me.KeyUp
@@ -35,8 +36,16 @@
         Else
             mTimer.Stop()
             mTimer = Nothing
-            Me.Close()
+            mCloseTimer = New Timer()
+            mCloseTimer.Interval = 3000
+            mCloseTimer.Start()
         End If
+    End Sub
+
+    Private Sub CloseTimerEventProcessor(myObject As Object, ByVal myEventArgs As EventArgs) Handles mCloseTimer.Tick
+        mCloseTimer.Stop()
+        mCloseTimer = Nothing
+        Me.Close()
     End Sub
 
 End Class

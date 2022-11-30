@@ -1,5 +1,8 @@
-﻿Imports System.IO
+﻿Imports System.Drawing.Design
+Imports System.Drawing.Imaging
+Imports System.IO
 Imports System.IO.Compression
+Imports System.Windows.Forms.Design
 
 Public Class AnimationMaker
 
@@ -182,9 +185,23 @@ Public Class AnimationMaker
                 For i = 0 To Animation.Pictures.Count - 1
                     Dim item = Animation.Pictures.Item(i)
                     Dim fileName = My.Computer.FileSystem.GetName(item)
-                    System.IO.File.Copy(item, part0Dir + "\" + fileName)
-                    If i = Animation.Pictures.Count - 1 Then
-                        System.IO.File.Copy(item, part1Dir + "\" + My.Computer.FileSystem.GetName(Animation.Pictures.Item(0)))
+                    Dim index = fileName.LastIndexOf(".")
+                    If index > 0 Then
+                        Dim suffix = fileName.Substring(index + 1).ToLower()
+                        Debug.WriteLine("File: " + fileName + ", Suffix: " + suffix)
+                        If suffix <> "png" Then
+                            Dim bmp As New Bitmap(item.ToString())
+                            fileName = fileName.Substring(0, index) + ".png"
+                            bmp.Save(part0Dir + "\" + fileName, ImageFormat.Png)
+                            If i = Animation.Pictures.Count - 1 Then
+                                bmp.Save(part1Dir + "\" + My.Computer.FileSystem.GetName(Animation.Pictures.Item(0)), ImageFormat.Png)
+                            End If
+                        Else
+                            System.IO.File.Copy(item, part0Dir + "\" + fileName)
+                            If i = Animation.Pictures.Count - 1 Then
+                                System.IO.File.Copy(item, part1Dir + "\" + My.Computer.FileSystem.GetName(Animation.Pictures.Item(0)))
+                            End If
+                        End If
                     End If
                 Next
 
