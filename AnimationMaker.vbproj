@@ -7,7 +7,12 @@
     <UseWindowsForms>true</UseWindowsForms>
     <MyType>WindowsForms</MyType>
     <AssemblyName>Android 动画制作</AssemblyName>
+    <ApplicationIcon>animation.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="animation.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <Import Include="System.Data" />

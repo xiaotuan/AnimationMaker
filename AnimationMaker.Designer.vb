@@ -22,6 +22,7 @@ Partial Class AnimationMaker
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(AnimationMaker))
         Me.Label1 = New System.Windows.Forms.Label()
         Me.tbDirectory = New System.Windows.Forms.TextBox()
         Me.btnSelect = New System.Windows.Forms.Button()
@@ -262,6 +263,7 @@ Partial Class AnimationMaker
         Me.Controls.Add(Me.tbDirectory)
         Me.Controls.Add(Me.Label1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "AnimationMaker"
         Me.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
