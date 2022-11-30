@@ -221,14 +221,15 @@ Public Class AnimationMaker
                     System.IO.File.Delete(zipAnim)
                 End If
                 ZipFile.CreateFromDirectory(animDir, zipAnim, CompressionLevel.NoCompression, False)
+
+                System.IO.Directory.Delete(animDir, True)
+                MessageBox.Show("动画制作成功", "提示"， MessageBoxButtons.OK)
             Else
                 MessageBox.Show("速率必须是数字", "提示"， MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
         Else
             MessageBox.Show("动画图片目录不存在", "提示"， MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
-
-        MessageBox.Show("动画制作成功", "提示"， MessageBoxButtons.OK)
 
         btCreate.Enabled = True
         tbDirectory.Enabled = True
