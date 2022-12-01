@@ -236,7 +236,7 @@ Partial Class AnimationMaker
         '
         Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
         Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(131, 17)
-        Me.ToolStripStatusLabel1.Text = "当前软件版本号：1.0.4"
+        Me.ToolStripStatusLabel1.Text = "当前软件版本号：1.0.5"
         '
         'AnimationMaker
         '

@@ -103,7 +103,7 @@ Public Class AnimationMaker
                 Dim path = item.Substring(0, item.LastIndexOf("\"))
                 Debug.WriteLine("Path: " + path)
                 Dim number = Format(start + i, numFormat)
-                path += String.Concat("/", prefix, number, item.AsSpan(item.LastIndexOf(".")))
+                path += String.Concat("\", prefix, number, item.AsSpan(item.LastIndexOf(".")))
                 Debug.WriteLine("Number: " + number)
                 Debug.WriteLine("Source path: " + Animation.Pictures.Item(i) + ", Dest path: " + path)
                 System.IO.File.Move(Animation.Pictures.Item(i), path)
@@ -123,6 +123,8 @@ Public Class AnimationMaker
                 Dim img = Image.FromFile(Animation.Pictures.Item(0))
                 Dim imgWidth = img.Width
                 Dim imgHeight = img.Height
+                img.Dispose()
+                img = Nothing
                 Dim width = imgWidth
                 Dim height = imgHeight
                 Dim screenWidth = My.Computer.Screen.Bounds.Width
@@ -144,7 +146,7 @@ Public Class AnimationMaker
                     .ClientSize = New System.Drawing.Size(width, height)
                 }
                 playForm.pbAnim.Size = New System.Drawing.Size(width, height)
-                playForm.Show()
+                playForm.ShowDialog()
             Else
                 MessageBox.Show("动画速率必须数字", "提示"， MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
@@ -220,7 +222,8 @@ Public Class AnimationMaker
                 file.WriteLine("p 0 0 part1")
                 file.WriteLine("")
                 file.Close()
-
+                img.Dispose()
+                img = Nothing
                 If System.IO.File.Exists(zipAnim) Then
                     System.IO.File.Delete(zipAnim)
                 End If
