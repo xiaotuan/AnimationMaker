@@ -1,10 +1,30 @@
-﻿Imports System.Drawing.Design
-Imports System.Drawing.Imaging
-Imports System.IO
+﻿Imports System.Drawing.Imaging
 Imports System.IO.Compression
-Imports System.Windows.Forms.Design
 
 Public Class AnimationMaker
+
+    Public Class PictureCompare
+        Implements IComparer
+
+        ' Calls CaseInsensitiveComparer.Compare with the parameters reversed.
+        Public Function Compare(ByVal x As Object, ByVal y As Object) As Integer _
+         Implements IComparer.Compare
+            Dim xobj As String = TryCast(x, String)
+            Dim yobj As String = TryCast(y, String)
+            If xobj IsNot Nothing And yobj IsNot Nothing Then
+                If xobj.Length > yobj.Length Then
+                    Return 1
+                ElseIf xobj.Length < yobj.Length Then
+                    Return -1
+                Else
+                    Return xobj.CompareTo(yobj)
+                End If
+            Else
+                Throw New ArgumentException("Object is not a String")
+            End If
+        End Function 'IComparer.Compare
+
+    End Class
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Animation.Directory = ""
@@ -79,6 +99,7 @@ Public Class AnimationMaker
         Else
             MessageBox.Show("目录：" + Animation.Directory + " 不存在", "提示"， MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
+        Animation.Pictures.Sort(New PictureCompare())
     End Sub
 
     Private Sub cbReverse_CheckedChanged(sender As Object, e As EventArgs) Handles cbReverse.CheckedChanged
@@ -196,6 +217,7 @@ Public Class AnimationMaker
                         Dim suffix = fileName.Substring(index + 1).ToLower()
                         Debug.WriteLine("File: " + fileName + ", Suffix: " + suffix)
                         If suffix <> "png" Then
+                            Debug.WriteLine("Convert File: " + fileName + " to " + fileName.Substring(0, index) + ".png")
                             Dim bmp As New Bitmap(item.ToString())
                             fileName = fileName.Substring(0, index) + ".png"
                             bmp.Save(part0Dir + "\" + fileName, ImageFormat.Png)
